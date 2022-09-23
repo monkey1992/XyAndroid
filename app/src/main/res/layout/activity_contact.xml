@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btnAddContactByIntent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转系统联系人界面添加新的联系人" />
+
+    <Button
+        android:id="@+id/btnUpdateContactByIntent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转系统联系人界面更新现有联系人" />
+
+    <Button
+        android:id="@+id/btnAddContactDirectly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="直接添加新的联系人" />
+
+    <Button
+        android:id="@+id/btnUpdateContactDirectly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="直接更新现有联系人" />
+
+    <Button
+        android:id="@+id/btnDeleteContactDirectly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="直接删除现有联系人" />
+</LinearLayout>
