@@ -166,6 +166,10 @@ class ContactActivity : AppCompatActivity() {
         Toast.makeText(this, "更新成功", Toast.LENGTH_SHORT).show()
     }
 
+    /**
+     * 删除联系人
+     * 需要android.permission.WRITE_CONTACTS权限
+     */
     private fun deleteContactDirectly() {
         val rawContactId = currentContactData?.rawContactId
         if (rawContactId == null) {
@@ -182,6 +186,7 @@ class ContactActivity : AppCompatActivity() {
 
     /**
      * 查找联系人
+     * 需要android.permission.READ_CONTACTS权限
      */
     private fun queryContact() {
         val rawContactId = currentContactData?.rawContactId
