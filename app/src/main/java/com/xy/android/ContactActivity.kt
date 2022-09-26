@@ -13,7 +13,7 @@ import kotlin.random.Random
 
 /**
  * 联系人相关
- * 添加/更新联系人
+ * 添加/更新/删除联系人
  */
 class ContactActivity : AppCompatActivity() {
 
@@ -53,8 +53,13 @@ class ContactActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btnUpdateContactDirectly).setOnClickListener {
             updateContactDirectly()
         }
+
         findViewById<Button>(R.id.btnDeleteContactDirectly).setOnClickListener {
             deleteContactDirectly()
+        }
+
+        findViewById<Button>(R.id.btnQueryContact).setOnClickListener {
+            queryContact()
         }
     }
 
@@ -63,10 +68,12 @@ class ContactActivity : AppCompatActivity() {
      */
     private fun addContactByIntent() {
         val intent = Intent(Intent.ACTION_INSERT, ContactsContract.Contacts.CONTENT_URI)
+        // 先插入一条空的ContentValues()，用以获取raw_contact_id
         val rawContactUri =
             contentResolver.insert(ContactsContract.RawContacts.CONTENT_URI, ContentValues())
                 ?: return
-        currentContactData = getContactData(ContentUris.parseId(rawContactUri)).apply {
+        val rawContactId = ContentUris.parseId(rawContactUri)
+        currentContactData = getContactData(rawContactId).apply {
             intent.putExtra(ContactsContract.Intents.Insert.NAME, name)
             intent.putParcelableArrayListExtra(ContactsContract.Intents.Insert.DATA, data)
         }
@@ -106,10 +113,12 @@ class ContactActivity : AppCompatActivity() {
      * 需要android.permission.WRITE_CONTACTS权限
      */
     private fun addContactDirectly() {
+        // 先插入一条空的ContentValues()，用以获取raw_contact_id
         val rawContactUri =
             contentResolver.insert(ContactsContract.RawContacts.CONTENT_URI, ContentValues())
                 ?: return
-        val contactData = getContactData(ContentUris.parseId(rawContactUri))
+        val rawContactId = ContentUris.parseId(rawContactUri)
+        val contactData = getContactData(rawContactId)
         currentContactData = contactData
         contentResolver.bulkInsert(
             ContactsContract.Data.CONTENT_URI,
@@ -169,6 +178,33 @@ class ContactActivity : AppCompatActivity() {
         )
         currentContactData = null
         Toast.makeText(this, "删除成功", Toast.LENGTH_SHORT).show()
+    }
+
+    /**
+     * 查找联系人
+     */
+    private fun queryContact() {
+        val rawContactId = currentContactData?.rawContactId
+        if (rawContactId == null) {
+            Toast.makeText(this, "无当前联系人信息，请先创建联系人", Toast.LENGTH_SHORT).show()
+            return
+        }
+        val cursor = contentResolver.query(
+            ContactsContract.Data.CONTENT_URI,
+            null,
+            "${ContactsContract.Data.RAW_CONTACT_ID}=?",
+            arrayOf(rawContactId.toString()),
+            null
+        )
+        if (cursor == null) {
+            Toast.makeText(this, "查找联系人失败", Toast.LENGTH_SHORT).show()
+        } else {
+            cursor.moveToFirst()
+            val displayName = cursor.getString(76)
+            Toast.makeText(this, "查找联系人成功，displayName: $displayName", Toast.LENGTH_SHORT)
+                .show()
+        }
+        cursor?.close()
     }
 
     /**
