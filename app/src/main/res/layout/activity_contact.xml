@@ -35,4 +35,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="直接删除现有联系人" />
+
+    <Button
+        android:id="@+id/btnQueryContact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="查找联系人" />
 </LinearLayout>
