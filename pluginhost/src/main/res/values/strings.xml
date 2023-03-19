@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Plugin Host</string>
+    <string name="plugin_host_install_plugin">安装插件</string>
+    <string name="plugin_host_uninstall_plugin">卸载插件</string>
     <string name="plugin_host_to_plugin_activity">跳转至插件 Activity</string>
 </resources>

@@ -1,8 +1,7 @@
-package com.xy.android.plugin
+package com.xy.android.plugin.host
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
 import com.xy.android.plugin.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -17,9 +16,16 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
+        binding.content.btnInstallPlugin.setOnClickListener {
+            PluginsManager.installPlugin("plugin", assets.open("plugin.apk"))
+        }
+
+        binding.content.btnUninstallPlugin.setOnClickListener {
+            PluginsManager.uninstallPlugin("plugin")
+        }
+
         binding.content.btnToPluginActivity.setOnClickListener { view ->
-            Snackbar.make(view, R.string.plugin_host_to_plugin_activity, Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+
         }
     }
 }

@@ -6,6 +6,32 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <Button
+        android:id="@+id/btn_install_plugin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/plugin_host_install_plugin"
+        app:layout_constraintBottom_toTopOf="@+id/btn_uninstall_plugin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_uninstall_plugin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/plugin_host_uninstall_plugin"
+        app:layout_constraintBottom_toTopOf="@+id/btn_to_plugin_activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_install_plugin" />
+
+    <Button
         android:id="@+id/btn_to_plugin_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,5 +41,5 @@
         android:text="@string/plugin_host_to_plugin_activity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_uninstall_plugin" />
 </androidx.constraintlayout.widget.ConstraintLayout>
