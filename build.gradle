@@ -5,6 +5,10 @@ plugins {
     id 'org.jetbrains.kotlin.android' version '1.7.10' apply false
 }
 
+println 'XyAndroid build.gradle start'
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+println 'XyAndroid build.gradle end'

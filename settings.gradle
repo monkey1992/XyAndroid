@@ -13,4 +13,12 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "XyAndroid"
+
+println 'XyAndroid settings.gradle start'
+
 include ':app'
+include ':sdk'
+include ':pluginhost'
+include ':pluginapk'
+
+println 'XyAndroid settings.gradle end'
