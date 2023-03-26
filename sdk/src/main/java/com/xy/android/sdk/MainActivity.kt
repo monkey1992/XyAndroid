@@ -1,11 +1,13 @@
 package com.xy.android.sdk
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.xy.android.sdk.databinding.ActivityMainBinding
+import com.xy.android.sdk.event.EventDispatchActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -16,9 +18,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-        binding.content.btnEventStream.setOnClickListener { view ->
-            Snackbar.make(view, "点击了 btn_event_stream 按钮", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        binding.content.btnEventDispatch.setOnClickListener { view ->
+            startActivity(Intent(this, EventDispatchActivity::class.java))
         }
     }
 }

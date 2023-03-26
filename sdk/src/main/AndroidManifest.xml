@@ -23,6 +23,11 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <activity
+            android:name=".event.EventDispatchActivity"
+            android:label="@string/sdk_event_dispatch"
+            android:theme="@style/Theme.XyAndroid.NoActionBar" />
     </application>
 
 </manifest>

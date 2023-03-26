@@ -11,10 +11,10 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/btn_event_stream"
+            android:id="@+id/btn_event_dispatch"
             style="@style/Theme.XyAndroid.ButtonItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/sdk_event_stream" />
+            android:text="@string/sdk_event_dispatch" />
     </LinearLayout>
 </ScrollView>

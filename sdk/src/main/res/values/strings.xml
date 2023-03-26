@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">sdk</string>
-    <string name="sdk_event_stream">事件机制</string>
+    <string name="sdk_event_dispatch">事件分发机制</string>
 </resources>
