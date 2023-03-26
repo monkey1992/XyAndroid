@@ -22,4 +22,12 @@
     <style name="Theme.XyAndroid.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.XyAndroid.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.XyAndroid.ButtonItem">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+    </style>
 </resources>

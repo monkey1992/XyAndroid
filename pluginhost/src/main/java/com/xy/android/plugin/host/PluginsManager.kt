@@ -10,6 +10,8 @@ import java.io.InputStream
  */
 object PluginsManager : IPluginsManager {
 
+    const val PLUGIN_NAME_PLUGIN = "plugin"
+
     private const val PLUGINS_DIRECTORY_NAME = "plugins"
 
     private const val PLUGIN_OPTIMIZED_DIRECTORY = "optimized"
@@ -42,7 +44,7 @@ object PluginsManager : IPluginsManager {
             librarySearchDirectory.absolutePath,
             ClassLoader.getSystemClassLoader()
         )
-        plugins[name] = Plugin(name, classLoader)
+        plugins[name] = Plugin(name, pluginFile, classLoader)
     }
 
     override fun uninstallPlugin(name: String) {
@@ -51,5 +53,9 @@ object PluginsManager : IPluginsManager {
             pluginsDirectory.delete()
         }
         plugins.remove(name)
+    }
+
+    override fun getPlugin(name: String): Plugin? {
+        return plugins[name]
     }
 }

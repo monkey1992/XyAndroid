@@ -1,10 +1,11 @@
 package com.xy.android.plugin.host
 
+import android.app.Activity
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.xy.android.plugin.databinding.ActivityMainBinding
+import com.xy.android.plugin.host.PluginsManager.PLUGIN_NAME_PLUGIN
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : Activity() {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -14,18 +15,15 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
-
-        binding.content.btnInstallPlugin.setOnClickListener {
-            PluginsManager.installPlugin("plugin", assets.open("plugin.apk"))
+        val content = binding.content
+        content.btnInstallPlugin.setOnClickListener {
+            PluginsManager.installPlugin(PLUGIN_NAME_PLUGIN, assets.open("plugin.apk"))
         }
-
-        binding.content.btnUninstallPlugin.setOnClickListener {
-            PluginsManager.uninstallPlugin("plugin")
+        content.btnUninstallPlugin.setOnClickListener {
+            PluginsManager.uninstallPlugin(PLUGIN_NAME_PLUGIN)
         }
-
-        binding.content.btnToPluginActivity.setOnClickListener { view ->
-
+        content.btnToPluginActivity.setOnClickListener {
+            ProxyActivity.start(this, PLUGIN_NAME_PLUGIN, "com.xy.android.plugin.PluginActivity")
         }
     }
 }

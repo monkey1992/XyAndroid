@@ -25,4 +25,11 @@ interface IPluginsManager {
      * @param name 插件名称
      */
     fun uninstallPlugin(name: String)
+
+    /**
+     * 获取插件
+     * @param name 插件名称
+     * @return 插件
+     */
+    fun getPlugin(name: String): Plugin?
 }
