@@ -3,6 +3,7 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
+        jcenter()
     }
 }
 dependencyResolutionManagement {
@@ -10,6 +11,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        jcenter()
     }
 }
 rootProject.name = "XyAndroid"
@@ -20,5 +22,6 @@ include ':app'
 include ':sdk'
 include ':pluginhost'
 include ':pluginapk'
+include ':common'
 
 println 'XyAndroid settings.gradle end'

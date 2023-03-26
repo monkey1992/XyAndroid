@@ -7,6 +7,8 @@ plugins {
 
 println 'XyAndroid build.gradle start'
 
+apply from: 'ext.gradle'
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
