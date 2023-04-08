@@ -27,7 +27,7 @@ class EventDispatchLayout @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        canvas?.drawText("$tag 111", 100f, 100f, paint)
+        canvas?.drawText("$tag", 100f, 100f, paint)
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
