@@ -11,6 +11,7 @@ import android.view.TextureView
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.SeekBar
+import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.TextView
 import com.xy.android.sdk.R
 import com.xy.android.sdk.media.player.IMediaPlayer
@@ -77,12 +78,24 @@ class XyMediaController @JvmOverloads constructor(
         tvCurrentPosition = findViewById(R.id.tv_current_position)
         tvDuration = findViewById(R.id.tv_duration)
         seekBar = findViewById(R.id.seek_bar)
+        seekBar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+            }
+        })
     }
 
     private fun setCurrentPosition() {
         mediaPlayer?.apply {
+            val progress = getCurrentPosition()
             tvCurrentPosition.text =
-                DateUtils.formatElapsedTime(getCurrentPosition().toLong() / 1000)
+                DateUtils.formatElapsedTime(progress.toLong() / 1000)
+            seekBar.progress = progress
         }
     }
 
@@ -115,7 +128,9 @@ class XyMediaController @JvmOverloads constructor(
 
     override fun onPrepared(mp: IMediaPlayer) {
         setCurrentPosition()
-        tvDuration.text = DateUtils.formatElapsedTime(mp.getDuration().toLong() / 1000)
+        val duration = mp.getDuration()
+        tvDuration.text = DateUtils.formatElapsedTime(duration.toLong() / 1000)
+        seekBar.max = duration
     }
 
     override fun onInfo(mp: IMediaPlayer, what: Int, extra: Int) {
