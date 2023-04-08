@@ -44,6 +44,14 @@ class ExoMediaPlayer : AbsMediaPlayer() {
         TODO("Not yet implemented")
     }
 
+    override fun getCurrentPosition(): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun getDuration(): Int {
+        TODO("Not yet implemented")
+    }
+
     override fun setOnPreparedListener(listener: IMediaPlayer.OnPreparedListener) {
         TODO("Not yet implemented")
     }

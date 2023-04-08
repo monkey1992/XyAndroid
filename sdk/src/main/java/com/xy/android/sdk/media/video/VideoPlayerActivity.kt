@@ -16,6 +16,9 @@ class VideoPlayerActivity : BackActivity(), IMediaPlayer.OnPreparedListener,
 
     private lateinit var binding: ActivityVideoPlayerBinding
 
+    private val mediaController
+        get() = binding.mediaController
+
     private lateinit var mediaPlayerFactory: MediaPlayerFactory
 
     private lateinit var mediaPlayer: IMediaPlayer
@@ -30,7 +33,7 @@ class VideoPlayerActivity : BackActivity(), IMediaPlayer.OnPreparedListener,
 
         initVideoPlayer()
 
-        mediaPlayer.attachMediaController(binding.mediaController)
+        mediaPlayer.attachMediaController(mediaController)
     }
 
     private fun initVideoPlayer() {
@@ -41,30 +44,37 @@ class VideoPlayerActivity : BackActivity(), IMediaPlayer.OnPreparedListener,
         mediaPlayer.setOnErrorListener(this)
         mediaPlayer.setOnCompletionListener(this)
         mediaPlayer.setOnSeekCompleteListener(this)
-        mediaPlayer.setDataSource("")
+        mediaPlayer.setDataSource("https://mazwai.com/videvo_files/video/free/2020-04/small_watermarked/200401_Fizzy%20Drinks%206_04_preview.webm")
         mediaPlayer.prepareAsync()
     }
 
-    override fun onPrepared(mp: IMediaPlayer?) {
+    override fun onPrepared(mp: IMediaPlayer) {
+        Log.d(TAG, "onPrepared $mp")
         mediaPlayer.start()
+        mediaController.onPrepared(mp)
+        mediaController.start()
     }
 
-    override fun onInfo(mp: IMediaPlayer?, what: Int, extra: Int): Boolean {
+    override fun onInfo(mp: IMediaPlayer, what: Int, extra: Int): Boolean {
         Log.d(TAG, "onInfo $mp, $what, $extra")
+        mediaController.onInfo(mp, what, extra)
         return true
     }
 
-    override fun onError(mp: IMediaPlayer?, what: Int, extra: Int): Boolean {
+    override fun onError(mp: IMediaPlayer, what: Int, extra: Int): Boolean {
         Log.d(TAG, "onError $mp, $what, $extra")
+        mediaController.onError(mp, what, extra)
         return true
     }
 
-    override fun onCompletion(mp: IMediaPlayer?) {
+    override fun onCompletion(mp: IMediaPlayer) {
         Log.d(TAG, "onCompletion $mp")
+        mediaController.onCompletion(mp)
     }
 
-    override fun onSeekComplete(mp: IMediaPlayer?) {
+    override fun onSeekComplete(mp: IMediaPlayer) {
         Log.d(TAG, "onSeekComplete $mp")
+        mediaController.onSeekComplete(mp)
     }
 
     companion object {

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -27,6 +29,11 @@
         <activity
             android:name=".event.EventDispatchActivity"
             android:label="@string/sdk_event_dispatch"
+            android:theme="@style/Theme.XyAndroid.NoActionBar" />
+
+        <activity
+            android:name=".media.video.VideoPlayerActivity"
+            android:label="@string/sdk_media_player"
             android:theme="@style/Theme.XyAndroid.NoActionBar" />
     </application>
 

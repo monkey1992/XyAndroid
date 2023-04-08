@@ -2,6 +2,7 @@ package com.xy.android.sdk.media.controller
 
 import android.content.Context
 import android.graphics.SurfaceTexture
+import android.text.format.DateUtils
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
@@ -32,7 +33,7 @@ class XyMediaController @JvmOverloads constructor(
     private var surfaceTexture: SurfaceTexture? = null
 
     init {
-        LayoutInflater.from(context).inflate(R.layout.video_controller, null)
+        LayoutInflater.from(context).inflate(R.layout.video_controller, this)
         initViews()
     }
 
@@ -78,11 +79,59 @@ class XyMediaController @JvmOverloads constructor(
         seekBar = findViewById(R.id.seek_bar)
     }
 
+    private fun setCurrentPosition() {
+        mediaPlayer?.apply {
+            tvCurrentPosition.text =
+                DateUtils.formatElapsedTime(getCurrentPosition().toLong() / 1000)
+        }
+    }
+
+    private fun updatePositionInterval() {
+
+        fun update() {
+            setCurrentPosition()
+            postDelayed({ update() }, 200)
+        }
+
+        update()
+    }
+
     override fun attachMediaPlayer(mediaPlayer: IMediaPlayer) {
         this.mediaPlayer = mediaPlayer
         surfaceTexture?.apply {
             mediaPlayer.setSurface(Surface(this))
         }
+    }
+
+    override fun start() {
+        updatePositionInterval()
+    }
+
+    override fun pause() {
+    }
+
+    override fun stop() {
+    }
+
+    override fun onPrepared(mp: IMediaPlayer) {
+        setCurrentPosition()
+        tvDuration.text = DateUtils.formatElapsedTime(mp.getDuration().toLong() / 1000)
+    }
+
+    override fun onInfo(mp: IMediaPlayer, what: Int, extra: Int) {
+    }
+
+    override fun onError(mp: IMediaPlayer, what: Int, extra: Int) {
+    }
+
+    override fun onCompletion(mp: IMediaPlayer) {
+    }
+
+    override fun onSeekComplete(mp: IMediaPlayer) {
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
     }
 
     companion object {

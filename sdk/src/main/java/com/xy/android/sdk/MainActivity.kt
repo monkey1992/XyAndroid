@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.xy.android.sdk.databinding.ActivityMainBinding
 import com.xy.android.sdk.event.EventDispatchActivity
+import com.xy.android.sdk.media.video.VideoPlayerActivity
 
 class MainActivity : BaseActivity() {
 
@@ -20,6 +21,9 @@ class MainActivity : BaseActivity() {
         setSupportActionBar(binding.toolbar)
         binding.content.btnEventDispatch.setOnClickListener { view ->
             startActivity(Intent(this, EventDispatchActivity::class.java))
+        }
+        binding.content.btnMediaPlayer.setOnClickListener { view ->
+            startActivity(Intent(this, VideoPlayerActivity::class.java))
         }
     }
 }

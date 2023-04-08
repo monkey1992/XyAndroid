@@ -23,7 +23,7 @@ interface IMediaPlayer {
          *
          * @param mp the MediaPlayer that is ready for playback
          */
-        fun onPrepared(mp: IMediaPlayer?)
+        fun onPrepared(mp: IMediaPlayer)
     }
 
     /**
@@ -57,7 +57,7 @@ interface IMediaPlayer {
          * Returning false, or not having an OnInfoListener at all, will
          * cause the info to be discarded.
          */
-        fun onInfo(mp: IMediaPlayer?, what: Int, extra: Int): Boolean
+        fun onInfo(mp: IMediaPlayer, what: Int, extra: Int): Boolean
     }
 
     /**
@@ -88,7 +88,7 @@ interface IMediaPlayer {
          * Returning false, or not having an OnErrorListener at all, will
          * cause the OnCompletionListener to be called.
          */
-        fun onError(mp: IMediaPlayer?, what: Int, extra: Int): Boolean
+        fun onError(mp: IMediaPlayer, what: Int, extra: Int): Boolean
     }
 
     /**
@@ -102,7 +102,7 @@ interface IMediaPlayer {
          *
          * @param mp the MediaPlayer that reached the end of the file
          */
-        fun onCompletion(mp: IMediaPlayer?)
+        fun onCompletion(mp: IMediaPlayer)
     }
 
     /**
@@ -116,7 +116,7 @@ interface IMediaPlayer {
          *
          * @param mp the MediaPlayer that issued the seek operation
          */
-        fun onSeekComplete(mp: IMediaPlayer?)
+        fun onSeekComplete(mp: IMediaPlayer)
     }
 
     fun attachMediaController(mediaController: IMediaController)
@@ -202,6 +202,18 @@ interface IMediaPlayer {
      * Stops playback after playback has been started or paused.
      */
     fun stop()
+
+    /**
+     * Gets the current playback position.
+     * @return the current position in milliseconds
+     */
+    fun getCurrentPosition():Int
+
+    /**
+     * Gets the duration of the file.
+     * @return the duration in milliseconds, if no duration is available (for example, if streaming live content), -1 is returned.
+     */
+    fun getDuration(): Int
 
     /**
      * Register a callback to be invoked when the media source is ready for playback.

@@ -71,6 +71,14 @@ class SystemMediaPlayer : AbsMediaPlayer() {
         mediaPlayer.stop()
     }
 
+    override fun getCurrentPosition(): Int {
+        return mediaPlayer.currentPosition
+    }
+
+    override fun getDuration(): Int {
+        return mediaPlayer.duration
+    }
+
     override fun setOnPreparedListener(listener: IMediaPlayer.OnPreparedListener) {
         mediaPlayer.setOnPreparedListener { listener.onPrepared(this@SystemMediaPlayer) }
     }
