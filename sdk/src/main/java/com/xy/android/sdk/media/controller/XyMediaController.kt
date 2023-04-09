@@ -33,6 +33,8 @@ class XyMediaController @JvmOverloads constructor(
 
     private var surfaceTexture: SurfaceTexture? = null
 
+    private var updateCurrentPositionRunnable: Runnable? = null
+
     init {
         LayoutInflater.from(context).inflate(R.layout.video_controller, this)
         initViews()
@@ -80,6 +82,9 @@ class XyMediaController @JvmOverloads constructor(
         seekBar = findViewById(R.id.seek_bar)
         seekBar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                if (fromUser) {
+                    mediaPlayer?.seekTo(progress)
+                }
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -99,14 +104,18 @@ class XyMediaController @JvmOverloads constructor(
         }
     }
 
-    private fun updatePositionInterval() {
-
-        fun update() {
-            setCurrentPosition()
-            postDelayed({ update() }, 200)
+    private fun startToUpdateCurrentPosition() {
+        if (updateCurrentPositionRunnable == null) {
+            updateCurrentPositionRunnable = Runnable {
+                setCurrentPosition()
+                postDelayed(updateCurrentPositionRunnable, 100)
+            }
         }
+        post(updateCurrentPositionRunnable)
+    }
 
-        update()
+    private fun stopUpdatingCurrentPosition() {
+        removeCallbacks(updateCurrentPositionRunnable)
     }
 
     override fun attachMediaPlayer(mediaPlayer: IMediaPlayer) {
@@ -117,13 +126,15 @@ class XyMediaController @JvmOverloads constructor(
     }
 
     override fun start() {
-        updatePositionInterval()
+        startToUpdateCurrentPosition()
     }
 
     override fun pause() {
+        stopUpdatingCurrentPosition()
     }
 
     override fun stop() {
+        stopUpdatingCurrentPosition()
     }
 
     override fun onPrepared(mp: IMediaPlayer) {
@@ -137,9 +148,11 @@ class XyMediaController @JvmOverloads constructor(
     }
 
     override fun onError(mp: IMediaPlayer, what: Int, extra: Int) {
+        stopUpdatingCurrentPosition()
     }
 
     override fun onCompletion(mp: IMediaPlayer) {
+        stopUpdatingCurrentPosition()
     }
 
     override fun onSeekComplete(mp: IMediaPlayer) {
@@ -147,6 +160,7 @@ class XyMediaController @JvmOverloads constructor(
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
+        stopUpdatingCurrentPosition()
     }
 
     companion object {

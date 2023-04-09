@@ -79,6 +79,24 @@ class SystemMediaPlayer : AbsMediaPlayer() {
         return mediaPlayer.duration
     }
 
+    override fun seekTo(msec: Int) {
+        mediaPlayer.seekTo(msec)
+    }
+
+    override fun seekTo(msec: Long, mode: Int) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            mediaPlayer.seekTo(msec, mode)
+            return
+        }
+        mediaPlayer.seekTo(
+            when {
+                msec > Int.MAX_VALUE -> Int.MAX_VALUE
+                msec < Int.MIN_VALUE -> Int.MIN_VALUE
+                else -> msec.toInt()
+            }
+        )
+    }
+
     override fun setOnPreparedListener(listener: IMediaPlayer.OnPreparedListener) {
         mediaPlayer.setOnPreparedListener { listener.onPrepared(this@SystemMediaPlayer) }
     }

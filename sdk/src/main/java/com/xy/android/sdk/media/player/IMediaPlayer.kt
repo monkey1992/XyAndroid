@@ -207,13 +207,26 @@ interface IMediaPlayer {
      * Gets the current playback position.
      * @return the current position in milliseconds
      */
-    fun getCurrentPosition():Int
+    fun getCurrentPosition(): Int
 
     /**
      * Gets the duration of the file.
      * @return the duration in milliseconds, if no duration is available (for example, if streaming live content), -1 is returned.
      */
     fun getDuration(): Int
+
+    /**
+     * Seeks to specified time position. Same as seekTo(long, int) with mode = SEEK_PREVIOUS_SYNC.
+     * @param msec the offset in milliseconds from the start to seek to
+     */
+    fun seekTo(msec: Int)
+
+    /**
+     * Moves the media to specified time position by considering the given mode.
+     * @param msec the offset in milliseconds from the start to seek to.
+     * @param mode the mode indicating where exactly to seek to.
+     */
+    fun seekTo(msec: Long, mode: Int)
 
     /**
      * Register a callback to be invoked when the media source is ready for playback.
