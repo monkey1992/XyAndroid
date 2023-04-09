@@ -32,6 +32,14 @@ class ExoMediaPlayer : AbsMediaPlayer() {
         TODO("Not yet implemented")
     }
 
+    override fun release() {
+        TODO("Not yet implemented")
+    }
+
+    override fun reset() {
+        TODO("Not yet implemented")
+    }
+
     override fun start() {
         TODO("Not yet implemented")
     }
@@ -64,23 +72,27 @@ class ExoMediaPlayer : AbsMediaPlayer() {
         TODO("Not yet implemented")
     }
 
-    override fun setOnPreparedListener(listener: IMediaPlayer.OnPreparedListener) {
+    override fun setOnPreparedListener(listener: IMediaPlayer.OnPreparedListener?) {
         TODO("Not yet implemented")
     }
 
-    override fun setOnInfoListener(listener: IMediaPlayer.OnInfoListener) {
+    override fun setOnInfoListener(listener: IMediaPlayer.OnInfoListener?) {
         TODO("Not yet implemented")
     }
 
-    override fun setOnErrorListener(listener: IMediaPlayer.OnErrorListener) {
+    override fun setOnErrorListener(listener: IMediaPlayer.OnErrorListener?) {
         TODO("Not yet implemented")
     }
 
-    override fun setOnCompletionListener(listener: IMediaPlayer.OnCompletionListener) {
+    override fun setOnCompletionListener(listener: IMediaPlayer.OnCompletionListener?) {
         TODO("Not yet implemented")
     }
 
-    override fun setOnSeekCompleteListener(listener: IMediaPlayer.OnSeekCompleteListener) {
+    override fun setOnSeekCompleteListener(listener: IMediaPlayer.OnSeekCompleteListener?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun setOnBufferingUpdateListener(listener: IMediaPlayer.OnBufferingUpdateListener?) {
         TODO("Not yet implemented")
     }
 }

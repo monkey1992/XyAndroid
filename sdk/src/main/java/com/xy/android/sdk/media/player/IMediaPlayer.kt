@@ -119,6 +119,27 @@ interface IMediaPlayer {
         fun onSeekComplete(mp: IMediaPlayer)
     }
 
+    /**
+     * Interface definition of a callback to be invoked indicating buffering
+     * status of a media resource being streamed over the network.
+     */
+    interface OnBufferingUpdateListener {
+
+        /**
+         * Called to update status in buffering a media stream received through
+         * progressive HTTP download. The received buffering percentage
+         * indicates how much of the content has been buffered or played.
+         * For example a buffering update of 80 percent when half the content
+         * has already been played indicates that the next 30 percent of the
+         * content to play has been buffered.
+         *
+         * @param mp      the MediaPlayer the update pertains to
+         * @param percent the percentage (0-100) of the content
+         * that has been buffered or played thus far
+         */
+        fun onBufferingUpdate(mp: IMediaPlayer, percent: Int)
+    }
+
     fun attachMediaController(mediaController: IMediaController)
 
     /**
@@ -188,6 +209,17 @@ interface IMediaPlayer {
     fun prepareAsync()
 
     /**
+     * Releases resources associated with this MediaPlayer object.
+     */
+    fun release()
+
+    /**
+     * Resets the MediaPlayer to its uninitialized state.
+     * After calling this method, you will have to initialize it again by setting the data source and calling prepare().
+     */
+    fun reset()
+
+    /**
      * Starts or resumes playback. If playback had previously been paused, playback will continue from where it was paused.
      * If playback had been stopped, or never started before, playback will start at the beginning.
      */
@@ -238,29 +270,35 @@ interface IMediaPlayer {
      * Register a callback to be invoked when the media source is ready for playback.
      * @param listener the callback that will be run
      */
-    fun setOnPreparedListener(listener: OnPreparedListener)
+    fun setOnPreparedListener(listener: OnPreparedListener?)
 
     /**
      * Register a callback to be invoked when an info/warning is available.
      * @Param listener the callback that will be run
      */
-    fun setOnInfoListener(listener: OnInfoListener)
+    fun setOnInfoListener(listener: OnInfoListener?)
 
     /**
      * Register a callback to be invoked when an error has happened during an asynchronous operation.
      * @Param listener the callback that will be run
      */
-    fun setOnErrorListener(listener: OnErrorListener)
+    fun setOnErrorListener(listener: OnErrorListener?)
 
     /**
      * Register a callback to be invoked when the end of a media source has been reached during playback.
      * @Param listener the callback that will be run
      */
-    fun setOnCompletionListener(listener: OnCompletionListener)
+    fun setOnCompletionListener(listener: OnCompletionListener?)
 
     /**
      * Register a callback to be invoked when a seek operation has been completed.
      * @Param listener the callback that will be run
      */
-    fun setOnSeekCompleteListener(listener: OnSeekCompleteListener)
+    fun setOnSeekCompleteListener(listener: OnSeekCompleteListener?)
+
+    /**
+     * Register a callback to be invoked when the status of a network stream's buffer has changed.
+     * @param listener the callback that will be run.
+     */
+    fun setOnBufferingUpdateListener(listener: OnBufferingUpdateListener?)
 }

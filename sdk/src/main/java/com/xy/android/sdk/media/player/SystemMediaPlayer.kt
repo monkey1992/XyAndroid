@@ -59,6 +59,14 @@ class SystemMediaPlayer : AbsMediaPlayer() {
         mediaPlayer.prepareAsync()
     }
 
+    override fun release() {
+        mediaPlayer.release()
+    }
+
+    override fun reset() {
+        mediaPlayer.reset()
+    }
+
     override fun start() {
         mediaPlayer.start()
     }
@@ -101,35 +109,44 @@ class SystemMediaPlayer : AbsMediaPlayer() {
         )
     }
 
-    override fun setOnPreparedListener(listener: IMediaPlayer.OnPreparedListener) {
-        mediaPlayer.setOnPreparedListener { listener.onPrepared(this@SystemMediaPlayer) }
+    override fun setOnPreparedListener(listener: IMediaPlayer.OnPreparedListener?) {
+        mediaPlayer.setOnPreparedListener { listener?.onPrepared(this@SystemMediaPlayer) }
     }
 
-    override fun setOnInfoListener(listener: IMediaPlayer.OnInfoListener) {
+    override fun setOnInfoListener(listener: IMediaPlayer.OnInfoListener?) {
         mediaPlayer.setOnInfoListener { mp, what, extra ->
-            listener.onInfo(
+            listener?.onInfo(
                 this@SystemMediaPlayer,
                 what,
                 extra
-            )
+            ) ?: false
         }
     }
 
-    override fun setOnErrorListener(listener: IMediaPlayer.OnErrorListener) {
+    override fun setOnErrorListener(listener: IMediaPlayer.OnErrorListener?) {
         mediaPlayer.setOnErrorListener { mp, what, extra ->
-            listener.onError(
+            listener?.onError(
                 this@SystemMediaPlayer,
                 what,
                 extra
-            )
+            ) ?: false
         }
     }
 
-    override fun setOnCompletionListener(listener: IMediaPlayer.OnCompletionListener) {
-        mediaPlayer.setOnCompletionListener { listener.onCompletion(this@SystemMediaPlayer) }
+    override fun setOnCompletionListener(listener: IMediaPlayer.OnCompletionListener?) {
+        mediaPlayer.setOnCompletionListener { listener?.onCompletion(this@SystemMediaPlayer) }
     }
 
-    override fun setOnSeekCompleteListener(listener: IMediaPlayer.OnSeekCompleteListener) {
-        mediaPlayer.setOnSeekCompleteListener { listener.onSeekComplete(this@SystemMediaPlayer) }
+    override fun setOnSeekCompleteListener(listener: IMediaPlayer.OnSeekCompleteListener?) {
+        mediaPlayer.setOnSeekCompleteListener { listener?.onSeekComplete(this@SystemMediaPlayer) }
+    }
+
+    override fun setOnBufferingUpdateListener(listener: IMediaPlayer.OnBufferingUpdateListener?) {
+        mediaPlayer.setOnBufferingUpdateListener { mp, percent ->
+            listener?.onBufferingUpdate(
+                this@SystemMediaPlayer,
+                percent
+            )
+        }
     }
 }

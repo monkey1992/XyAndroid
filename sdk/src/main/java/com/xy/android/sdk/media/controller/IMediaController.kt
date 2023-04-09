@@ -26,4 +26,6 @@ interface IMediaController {
     fun onCompletion(mp: IMediaPlayer)
 
     fun onSeekComplete(mp: IMediaPlayer)
+
+    fun onBufferingUpdate(mp: IMediaPlayer, percent: Int)
 }

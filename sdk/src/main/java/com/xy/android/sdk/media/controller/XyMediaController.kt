@@ -8,11 +8,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.Surface
 import android.view.TextureView
-import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.SeekBar
+import android.view.View
+import android.widget.*
 import android.widget.SeekBar.OnSeekBarChangeListener
-import android.widget.TextView
 import com.xy.android.sdk.R
 import com.xy.android.sdk.media.player.IMediaPlayer
 
@@ -26,7 +24,9 @@ class XyMediaController @JvmOverloads constructor(
     override var mediaPlayer: IMediaPlayer? = null
 
     private lateinit var textureView: TextureView
+    private lateinit var progressBar: ProgressBar
     private lateinit var btnPlayPause: Button
+    private lateinit var tvError: TextView
     private lateinit var tvCurrentPosition: TextView
     private lateinit var tvDuration: TextView
     private lateinit var seekBar: SeekBar
@@ -73,6 +73,7 @@ class XyMediaController @JvmOverloads constructor(
                 Log.d(TAG, "onSurfaceTextureUpdated")
             }
         }
+        progressBar = findViewById(R.id.progress_bar)
         btnPlayPause = findViewById(R.id.btn_play_pause)
         btnPlayPause.setOnClickListener {
             mediaPlayer?.apply {
@@ -85,6 +86,7 @@ class XyMediaController @JvmOverloads constructor(
                 }
             }
         }
+        tvError = findViewById(R.id.tv_error)
         tvCurrentPosition = findViewById(R.id.tv_current_position)
         tvDuration = findViewById(R.id.tv_duration)
         seekBar = findViewById(R.id.seek_bar)
@@ -93,6 +95,7 @@ class XyMediaController @JvmOverloads constructor(
                 if (fromUser) {
                     mediaPlayer?.seekTo(progress)
                 }
+                checkShowLoading()
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -130,6 +133,31 @@ class XyMediaController @JvmOverloads constructor(
         btnPlayPause.setBackgroundResource(if (isPlaying) android.R.drawable.ic_media_pause else android.R.drawable.ic_media_play)
     }
 
+    private fun showLoading() {
+        progressBar.visibility = View.VISIBLE
+    }
+
+    private fun hideLoading() {
+        progressBar.visibility = View.GONE
+    }
+
+    private fun showError(error: String) {
+        tvError.text = error
+        tvError.visibility = View.VISIBLE
+    }
+
+    private fun hideError() {
+        tvError.visibility = View.GONE
+    }
+
+    private fun checkShowLoading() {
+        if (seekBar.progress >= seekBar.secondaryProgress) {
+            showLoading()
+        } else {
+            hideLoading()
+        }
+    }
+
     override fun attachMediaPlayer(mediaPlayer: IMediaPlayer) {
         this.mediaPlayer = mediaPlayer
         surfaceTexture?.apply {
@@ -157,12 +185,15 @@ class XyMediaController @JvmOverloads constructor(
         val duration = mp.getDuration()
         tvDuration.text = DateUtils.formatElapsedTime(duration.toLong() / 1000)
         seekBar.max = duration
+        hideLoading()
+        hideError()
     }
 
     override fun onInfo(mp: IMediaPlayer, what: Int, extra: Int) {
     }
 
     override fun onError(mp: IMediaPlayer, what: Int, extra: Int) {
+        showError("Error ( $what, $extra )")
         stopUpdatingCurrentPosition()
     }
 
@@ -172,6 +203,11 @@ class XyMediaController @JvmOverloads constructor(
     }
 
     override fun onSeekComplete(mp: IMediaPlayer) {
+    }
+
+    override fun onBufferingUpdate(mp: IMediaPlayer, percent: Int) {
+        seekBar.secondaryProgress = seekBar.max * percent / 100
+        checkShowLoading()
     }
 
     override fun onDetachedFromWindow() {

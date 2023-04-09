@@ -12,7 +12,7 @@ import com.xy.android.sdk.media.player.IMediaPlayer
  */
 class VideoPlayerActivity : BackActivity(), IMediaPlayer.OnPreparedListener,
     IMediaPlayer.OnInfoListener, IMediaPlayer.OnErrorListener, IMediaPlayer.OnCompletionListener,
-    IMediaPlayer.OnSeekCompleteListener {
+    IMediaPlayer.OnSeekCompleteListener, IMediaPlayer.OnBufferingUpdateListener {
 
     private lateinit var binding: ActivityVideoPlayerBinding
 
@@ -44,6 +44,7 @@ class VideoPlayerActivity : BackActivity(), IMediaPlayer.OnPreparedListener,
         mediaPlayer.setOnErrorListener(this)
         mediaPlayer.setOnCompletionListener(this)
         mediaPlayer.setOnSeekCompleteListener(this)
+        mediaPlayer.setOnBufferingUpdateListener(this)
         mediaPlayer.setDataSource("https://mazwai.com/videvo_files/video/free/2020-04/small_watermarked/200401_Fizzy%20Drinks%206_04_preview.webm")
         mediaPlayer.prepareAsync()
     }
@@ -75,6 +76,15 @@ class VideoPlayerActivity : BackActivity(), IMediaPlayer.OnPreparedListener,
     override fun onSeekComplete(mp: IMediaPlayer) {
         Log.d(TAG, "onSeekComplete $mp")
         mediaController.onSeekComplete(mp)
+    }
+
+    override fun onBufferingUpdate(mp: IMediaPlayer, percent: Int) {
+        mediaController.onBufferingUpdate(mp, percent)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mediaPlayer.release()
     }
 
     companion object {
