@@ -204,6 +204,12 @@ interface IMediaPlayer {
     fun stop()
 
     /**
+     * Checks whether the MediaPlayer is playing.
+     * @returns true if currently playing, false otherwise
+     */
+    fun isPlaying(): Boolean
+
+    /**
      * Gets the current playback position.
      * @return the current position in milliseconds
      */

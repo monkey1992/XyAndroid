@@ -11,11 +11,11 @@ interface IMediaController {
 
     fun attachMediaPlayer(mediaPlayer: IMediaPlayer)
 
-    fun start()
+    fun onStart()
 
-    fun pause()
+    fun onPause()
 
-    fun stop()
+    fun onStop()
 
     fun onPrepared(mp: IMediaPlayer)
 

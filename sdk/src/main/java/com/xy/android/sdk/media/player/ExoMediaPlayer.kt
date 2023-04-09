@@ -44,6 +44,10 @@ class ExoMediaPlayer : AbsMediaPlayer() {
         TODO("Not yet implemented")
     }
 
+    override fun isPlaying(): Boolean {
+        TODO("Not yet implemented")
+    }
+
     override fun getCurrentPosition(): Int {
         TODO("Not yet implemented")
     }

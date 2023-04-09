@@ -50,9 +50,9 @@ class VideoPlayerActivity : BackActivity(), IMediaPlayer.OnPreparedListener,
 
     override fun onPrepared(mp: IMediaPlayer) {
         Log.d(TAG, "onPrepared $mp")
-        mediaPlayer.start()
         mediaController.onPrepared(mp)
-        mediaController.start()
+        mediaPlayer.start()
+        mediaController.onStart()
     }
 
     override fun onInfo(mp: IMediaPlayer, what: Int, extra: Int): Boolean {

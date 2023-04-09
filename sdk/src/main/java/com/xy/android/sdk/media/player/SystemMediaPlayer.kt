@@ -71,6 +71,10 @@ class SystemMediaPlayer : AbsMediaPlayer() {
         mediaPlayer.stop()
     }
 
+    override fun isPlaying(): Boolean {
+        return mediaPlayer.isPlaying
+    }
+
     override fun getCurrentPosition(): Int {
         return mediaPlayer.currentPosition
     }

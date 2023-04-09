@@ -75,7 +75,15 @@ class XyMediaController @JvmOverloads constructor(
         }
         btnPlayPause = findViewById(R.id.btn_play_pause)
         btnPlayPause.setOnClickListener {
-
+            mediaPlayer?.apply {
+                if (isPlaying()) {
+                    pause()
+                    onPause()
+                } else {
+                    start()
+                    onStart()
+                }
+            }
         }
         tvCurrentPosition = findViewById(R.id.tv_current_position)
         tvDuration = findViewById(R.id.tv_duration)
@@ -118,6 +126,10 @@ class XyMediaController @JvmOverloads constructor(
         removeCallbacks(updateCurrentPositionRunnable)
     }
 
+    private fun setPlayOrPauseBtnBackground(isPlaying: Boolean) {
+        btnPlayPause.setBackgroundResource(if (isPlaying) android.R.drawable.ic_media_pause else android.R.drawable.ic_media_play)
+    }
+
     override fun attachMediaPlayer(mediaPlayer: IMediaPlayer) {
         this.mediaPlayer = mediaPlayer
         surfaceTexture?.apply {
@@ -125,16 +137,19 @@ class XyMediaController @JvmOverloads constructor(
         }
     }
 
-    override fun start() {
+    override fun onStart() {
         startToUpdateCurrentPosition()
+        setPlayOrPauseBtnBackground(true)
     }
 
-    override fun pause() {
+    override fun onPause() {
         stopUpdatingCurrentPosition()
+        setPlayOrPauseBtnBackground(false)
     }
 
-    override fun stop() {
+    override fun onStop() {
         stopUpdatingCurrentPosition()
+        setPlayOrPauseBtnBackground(false)
     }
 
     override fun onPrepared(mp: IMediaPlayer) {
@@ -153,6 +168,7 @@ class XyMediaController @JvmOverloads constructor(
 
     override fun onCompletion(mp: IMediaPlayer) {
         stopUpdatingCurrentPosition()
+        setPlayOrPauseBtnBackground(false)
     }
 
     override fun onSeekComplete(mp: IMediaPlayer) {
