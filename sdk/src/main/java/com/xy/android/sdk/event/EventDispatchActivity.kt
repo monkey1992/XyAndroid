@@ -19,6 +19,11 @@ class EventDispatchActivity : BackActivity() {
         setSupportActionBar(binding.toolbar)
     }
 
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        Log.d(TAG, "EventDispatchActivity onUserInteraction")
+    }
+
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         when (ev?.action) {
             MotionEvent.ACTION_DOWN -> {
