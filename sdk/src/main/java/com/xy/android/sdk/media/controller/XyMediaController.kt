@@ -80,10 +80,16 @@ class XyMediaController @JvmOverloads constructor(
                 if (isPlaying()) {
                     pause()
                     onPause()
-                } else {
-                    start()
-                    onStart()
+                    return@setOnClickListener
                 }
+                if (isErrorState()) {
+                    reset()
+                    setDataSource("https://oss.kaoyanvip.cn/attach/file1666157362471.mp4")
+                    prepareAsync()
+                    return@setOnClickListener
+                }
+                start()
+                onStart()
             }
         }
         tvError = findViewById(R.id.tv_error)
@@ -148,6 +154,10 @@ class XyMediaController @JvmOverloads constructor(
 
     private fun hideError() {
         tvError.visibility = View.GONE
+    }
+
+    private fun isErrorState(): Boolean {
+        return tvError.visibility == View.VISIBLE
     }
 
     private fun checkShowLoading() {
