@@ -35,6 +35,15 @@
             android:name=".media.video.VideoPlayerActivity"
             android:label="@string/sdk_media_player"
             android:theme="@style/Theme.XyAndroid.NoActionBar" />
-    </application>
 
+        <activity
+            android:name=".view.ViewActivity"
+            android:label="@string/sdk_view"
+            android:theme="@style/Theme.XyAndroid.NoActionBar" />
+
+        <activity
+            android:name=".view.edittext.EditTextActivity"
+            android:label="@string/sdk_edit_text"
+            android:theme="@style/Theme.XyAndroid.NoActionBar" />
+    </application>
 </manifest>
