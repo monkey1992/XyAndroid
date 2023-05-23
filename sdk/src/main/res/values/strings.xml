@@ -4,8 +4,12 @@
     <string name="sdk_media_player">MediaPlayer</string>
     <string name="sdk_view">View</string>
     <string name="sdk_edit_text">EditText</string>
+    <string name="sdk_code_implementation">代码实现：</string>
+    <string name="sdk_xml_implementation">XML实现：</string>
+    <string name="sdk_key_listener_implementation">KeyListener实现：</string>
     <string name="sdk_password">密码</string>
     <string name="sdk_number">数字</string>
     <string name="sdk_decimal">小数</string>
     <string name="sdk_signed">负数</string>
+    <string name="sdk_letter">字母</string>
 </resources>
