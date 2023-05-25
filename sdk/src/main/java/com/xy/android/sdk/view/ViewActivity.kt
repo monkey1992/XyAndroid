@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.xy.android.sdk.BackActivity
 import com.xy.android.sdk.databinding.ActivityViewBinding
 import com.xy.android.sdk.view.edittext.EditTextActivity
+import com.xy.android.sdk.view.webview.WebViewActivity
 
 class ViewActivity : BackActivity() {
 
@@ -20,6 +21,10 @@ class ViewActivity : BackActivity() {
 
         binding.btnEditText.setOnClickListener {
             startActivity(Intent(this, EditTextActivity::class.java))
+        }
+
+        binding.btnWebView.setOnClickListener {
+            startActivity(Intent(this, WebViewActivity::class.java))
         }
     }
 }

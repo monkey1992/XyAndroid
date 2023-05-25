@@ -12,4 +12,5 @@
     <string name="sdk_decimal">小数</string>
     <string name="sdk_signed">负数</string>
     <string name="sdk_letter">字母</string>
+    <string name="sdk_web_view">WebView</string>
 </resources>

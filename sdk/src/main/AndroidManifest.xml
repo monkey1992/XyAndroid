@@ -45,5 +45,10 @@
             android:name=".view.edittext.EditTextActivity"
             android:label="@string/sdk_edit_text"
             android:theme="@style/Theme.XyAndroid.NoActionBar" />
+
+        <activity
+            android:name=".view.webview.WebViewActivity"
+            android:label="@string/sdk_web_view"
+            android:theme="@style/Theme.XyAndroid.NoActionBar" />
     </application>
 </manifest>
