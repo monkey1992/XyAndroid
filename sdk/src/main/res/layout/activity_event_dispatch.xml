@@ -61,7 +61,6 @@
         android:id="@+id/event_dispatch_view_002"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible"
         android:background="@android:color/holo_orange_light"
         android:tag="_002"
         android:layout_marginStart="60dp"

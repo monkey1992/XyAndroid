@@ -13,4 +13,5 @@
     <string name="sdk_signed">负数</string>
     <string name="sdk_letter">字母</string>
     <string name="sdk_web_view">WebView</string>
+    <string name="sdk_bluetooth">Bluetooth</string>
 </resources>
