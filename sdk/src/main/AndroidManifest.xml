@@ -57,5 +57,10 @@
             android:name=".bluetooth.BluetoothActivity"
             android:label="@string/sdk_web_view"
             android:theme="@style/Theme.XyAndroid.NoActionBar" />
+
+        <activity
+            android:name=".storage.StorageActivity"
+            android:label="@string/sdk_storage"
+            android:theme="@style/Theme.XyAndroid.NoActionBar" />
     </application>
 </manifest>

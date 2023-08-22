@@ -14,4 +14,7 @@
     <string name="sdk_letter">字母</string>
     <string name="sdk_web_view">WebView</string>
     <string name="sdk_bluetooth">Bluetooth</string>
+    <string name="sdk_storage">存储</string>
+    <string name="sdk_write_external_storage">写入外部存储</string>
+    <string name="sdk_read_external_storage">读取外部存储</string>
 </resources>

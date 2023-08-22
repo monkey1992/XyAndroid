@@ -6,6 +6,7 @@ import com.xy.android.sdk.bluetooth.BluetoothActivity
 import com.xy.android.sdk.databinding.ActivityMainBinding
 import com.xy.android.sdk.event.EventDispatchActivity
 import com.xy.android.sdk.media.video.VideoPlayerActivity
+import com.xy.android.sdk.storage.StorageActivity
 import com.xy.android.sdk.view.ViewActivity
 
 class MainActivity : BaseActivity() {
@@ -33,6 +34,10 @@ class MainActivity : BaseActivity() {
 
         content.btnBluetooth.setOnClickListener { view ->
             startActivity(Intent(this, BluetoothActivity::class.java))
+        }
+
+        content.btnStorage.setOnClickListener { view ->
+            startActivity(Intent(this, StorageActivity::class.java))
         }
     }
 }
