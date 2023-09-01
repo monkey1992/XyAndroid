@@ -22,6 +22,9 @@
     <string name="sdk_task">任务</string>
     <string name="sdk_task_enter_activity">TaskEnterActivity</string>
     <string name="sdk_task_single_instance_activity">TaskSingleInstanceActivity</string>
+    <string name="sdk_task_single_task_activity">TaskSingleTaskActivity</string>
+    <string name="sdk_document_activity">DocumentActivity</string>
     <string name="sdk_start_task_single_instance_activity">启动TaskSingleInstanceActivity</string>
     <string name="sdk_start_task_single_task_activity">启动TaskSingleTaskActivity</string>
+    <string name="sdk_start_document_activity">启动DocumentActivity</string>
 </resources>

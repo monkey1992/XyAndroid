@@ -37,5 +37,12 @@ class TaskEnterActivity : BackActivity() {
                 startActivity(intent)
             }, 3000)
         }
+
+        binding.btnStartDocumentActivity.setOnClickListener {
+            val intent = Intent(this, DocumentActivity::class.java)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT)
+                .addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+            startActivity(intent)
+        }
     }
 }

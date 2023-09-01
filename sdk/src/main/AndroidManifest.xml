@@ -76,8 +76,14 @@
 
         <activity
             android:name=".activity.task.TaskSingleTaskActivity"
-            android:label="@string/sdk_start_task_single_task_activity"
+            android:label="@string/sdk_task_single_task_activity"
             android:launchMode="singleTask"
+            android:theme="@style/Theme.XyAndroid.NoActionBar" />
+
+        <activity
+            android:name=".activity.task.DocumentActivity"
+            android:label="@string/sdk_document_activity"
+            android:maxRecents="5"
             android:theme="@style/Theme.XyAndroid.NoActionBar" />
     </application>
 </manifest>
