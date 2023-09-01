@@ -7,6 +7,7 @@ import com.xy.android.sdk.databinding.ActivityMainBinding
 import com.xy.android.sdk.event.EventDispatchActivity
 import com.xy.android.sdk.media.video.VideoPlayerActivity
 import com.xy.android.sdk.storage.StorageActivity
+import com.xy.android.sdk.activity.task.TaskEnterActivity
 import com.xy.android.sdk.view.ViewActivity
 
 class MainActivity : BaseActivity() {
@@ -38,6 +39,10 @@ class MainActivity : BaseActivity() {
 
         content.btnStorage.setOnClickListener { view ->
             startActivity(Intent(this, StorageActivity::class.java))
+        }
+
+        content.btnTask.setOnClickListener { view ->
+            startActivity(Intent(this, TaskEnterActivity::class.java))
         }
     }
 }

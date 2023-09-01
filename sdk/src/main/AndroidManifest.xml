@@ -3,7 +3,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
-<!--    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />-->
+    <!--    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />-->
 
     <application
         android:allowBackup="true"
@@ -61,6 +61,23 @@
         <activity
             android:name=".storage.StorageActivity"
             android:label="@string/sdk_storage"
+            android:theme="@style/Theme.XyAndroid.NoActionBar" />
+
+        <activity
+            android:name=".activity.task.TaskEnterActivity"
+            android:label="@string/sdk_task_enter_activity"
+            android:theme="@style/Theme.XyAndroid.NoActionBar" />
+
+        <activity
+            android:name=".activity.task.TaskSingleInstanceActivity"
+            android:label="@string/sdk_task_single_instance_activity"
+            android:launchMode="singleInstance"
+            android:theme="@style/Theme.XyAndroid.NoActionBar" />
+
+        <activity
+            android:name=".activity.task.TaskSingleTaskActivity"
+            android:label="@string/sdk_start_task_single_task_activity"
+            android:launchMode="singleTask"
             android:theme="@style/Theme.XyAndroid.NoActionBar" />
     </application>
 </manifest>

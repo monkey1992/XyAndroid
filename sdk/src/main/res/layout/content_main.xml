@@ -44,5 +44,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/sdk_storage" />
+
+        <Button
+            android:id="@+id/btn_task"
+            style="@style/Theme.XyAndroid.ButtonItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sdk_task" />
     </LinearLayout>
 </ScrollView>
