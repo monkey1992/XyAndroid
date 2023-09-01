@@ -40,8 +40,8 @@ class TaskEnterActivity : BackActivity() {
 
         binding.btnStartDocumentActivity.setOnClickListener {
             val intent = Intent(this, DocumentActivity::class.java)
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT)
-                .addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT) // 创建文档
+//                .addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK) // 统始终会以目标 Activity 为根来创建新任务
             startActivity(intent)
         }
     }
