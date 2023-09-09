@@ -14,6 +14,8 @@ class AnimationActivity : BackActivity() {
         binding = ActivityAnimationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        (binding.ivAnimator.drawable as? Animatable)?.start()
+        (binding.ivAnimator1.drawable as? Animatable)?.start()
+
+        (binding.ivAnimator2.drawable as? Animatable)?.start()
     }
 }
