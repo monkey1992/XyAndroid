@@ -31,17 +31,23 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            assets.srcDirs = ['src/main/assets']
+        }
+    }
 }
 
 dependencies {
-
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     def dependencies = rootProject.ext.dependencies
     implementation dependencies.core_ktx
     implementation dependencies.appcompat
     implementation dependencies.material
-    implementation dependencies.junit
-    implementation dependencies.androidx_junit
-    implementation dependencies.androidx_espresso_core
+    testImplementation dependencies.junit
+    androidTestImplementation dependencies.androidx_junit
+    androidTestImplementation dependencies.androidx_espresso_core
     // Anko Commons
     api dependencies.anko_commons
 

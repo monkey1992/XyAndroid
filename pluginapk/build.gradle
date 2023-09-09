@@ -39,9 +39,9 @@ dependencies {
     implementation dependencies.appcompat
     implementation dependencies.material
     implementation dependencies.constraintlayout
-    implementation dependencies.junit
-    implementation dependencies.androidx_junit
-    implementation dependencies.androidx_espresso_core
+    testImplementation dependencies.junit
+    androidTestImplementation dependencies.androidx_junit
+    androidTestImplementation dependencies.androidx_espresso_core
 }
 
 project.afterEvaluate {

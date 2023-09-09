@@ -48,9 +48,9 @@ dependencies {
     implementation dependencies.constraintlayout
     implementation dependencies.navigation_fragment_ktx
     implementation dependencies.navigation_ui_ktx
-    implementation dependencies.junit
-    implementation dependencies.androidx_junit
-    implementation dependencies.androidx_espresso_core
+    testImplementation dependencies.junit
+    androidTestImplementation dependencies.androidx_junit
+    androidTestImplementation dependencies.androidx_espresso_core
 
     implementation project(':common')
 }

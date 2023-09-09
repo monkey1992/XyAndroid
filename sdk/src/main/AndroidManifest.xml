@@ -85,5 +85,10 @@
             android:label="@string/sdk_document_activity"
             android:maxRecents="5"
             android:theme="@style/Theme.XyAndroid.NoActionBar" />
+
+        <activity
+            android:name=".animation.AnimationActivity"
+            android:label="@string/sdk_animation"
+            android:theme="@style/Theme.XyAndroid.NoActionBar" />
     </application>
 </manifest>
